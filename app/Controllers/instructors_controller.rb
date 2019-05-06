@@ -1,9 +1,17 @@
 class InstructorsController < ApplicationController
 
   get "/signup" do
-    erb :signup
+    if !logged_in?
+      erb :signup
+    else
+      redirect to "/swimmers"
+    end
   end
 
+  # does not let a user sign up without a username
+  # does not let a user sign up without an email
+  # does not let a user sign up without a password
+  # redirects to failure page to try again
   post "/signup" do
     if params[:username] != "" && params[:password] != "" && params[:email] != ""
       @instructor = Instructor.new(username: params["username"], password: params["password"], email: params["email"])
@@ -13,30 +21,28 @@ class InstructorsController < ApplicationController
       redirect to '/failure'
     end
   end
-    # session[:instructor_id] = @instructor.id
-    # puts params
-    #   redirect '/failure'
-    #   erb :failure
-    # else
-    #  Instructor.create(name: params[:name], username: params[:username], password: params[:password])
-    #  redirect '/login'
-  	#end
 
+  # loads the login page
+  # loads swimmers after login
+  # does not let user view login page if already logged in
   get "/login" do
-    erb :login
-  end
-
-  post "/login" do
-    @instructor = Instructor.find_by(username: params["username"], password: params["password"])
-    #if instructor && instructor.authenticate(params[:password])
-    if @instructor
-      session[:instructor_id] = instructor.id
-      puts params
-      redirect "/swimmers"
+    if !logged_in?
+      erb :login
     else
-      redirect "/login"
+      redirect to "/swimmers"
     end
   end
+
+  post "/login" do #fix this...somehow!
+    binding.pry
+     @instructor = Instructor.find_by(username: params[:username])
+     if @instructor && @instructor.authenticate(params[:password])
+       session[:instructor_id] = @instructor_id
+       redirect to "/swimmers"
+     else
+       redirect to "/failure"
+     end
+   end
 
   get "/failure" do
     erb :failure
@@ -44,7 +50,7 @@ class InstructorsController < ApplicationController
 
   get '/logout' do
     session.clear
-    "You have been logged out!"
+    "You have been logged out! See you next time!"
     redirect '/'
   end
 end

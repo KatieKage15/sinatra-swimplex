@@ -9,5 +9,7 @@ require 'sinatra'
 require_relative 'app/controllers/instructors_controller'
 require_relative 'app/controllers/swimmers_controller'
 
+use Rack::MethodOverride
 use SwimmersController
-run InstructorsController
+use InstructorsController
+run ApplicationController

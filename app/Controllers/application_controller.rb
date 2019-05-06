@@ -1,4 +1,5 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -9,16 +10,20 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :index
+    if !logged_in?
+      erb :index
+    else
+      redirect to "/swimmers"
+    end
   end
 
-  # helpers do
-  #   def logged_in?
-  #     !!current_instructor
-  #   end
-  #
-  #   def current_instructor
-  #     @current_instructor ||= Instructor.find_by(id: session[:instructor_id]) if session[:instructor_id]
-  #   end
-  # end
+   helpers do
+     def logged_in?
+       !!current_instructor
+     end
+
+     def current_instructor
+       @current_instructor ||= Instructor.find_by(instructor_id: session[:instructor_id]) if session[:instructor_id]
+     end
+   end
 end
