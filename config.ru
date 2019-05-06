@@ -4,4 +4,10 @@ if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 end
 
-run App
+require 'sinatra'
+
+require_relative 'app/controllers/instructors_controller'
+require_relative 'app/controllers/swimmers_controller'
+
+use SwimmersController
+run InstructorsController
