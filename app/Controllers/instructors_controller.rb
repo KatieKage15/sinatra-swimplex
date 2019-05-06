@@ -5,8 +5,8 @@ class InstructorsController < ApplicationController
   end
 
   post "/signup" do
-    if params[:username] != "" && params[:password] != ""
-      @instructor = Instructor.new(username: params["username"], password: params["password"])
+    if params[:username] != "" && params[:password] != "" && params[:email] != ""
+      @instructor = Instructor.new(username: params["username"], password: params["password"], email: params["email"])
       @instructor.save
       erb :swimmers
     else
@@ -27,7 +27,7 @@ class InstructorsController < ApplicationController
   end
 
   post "/login" do
-    @instructor = Instructor.find_by(username: params[:username], password: params[:password])
+    @instructor = Instructor.find_by(username: params["username"], password: params["password"])
     #if instructor && instructor.authenticate(params[:password])
     if @instructor
       session[:instructor_id] = instructor.id
