@@ -12,13 +12,13 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
-  helpers do
-    def logged_in?
-      !!current_instructor
-    end
-
-    def current_instructor
-      @current_instructor ||= Instructor.find_by(id: session[:instructor_id]) if session[:instructor_id]
-    end
-  end
+  # helpers do
+  #   def logged_in?
+  #     !!current_instructor
+  #   end
+  #
+  #   def current_instructor
+  #     @current_instructor ||= Instructor.find_by(id: session[:instructor_id]) if session[:instructor_id]
+  #   end
+  # end
 end

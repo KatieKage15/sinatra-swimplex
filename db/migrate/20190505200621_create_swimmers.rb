@@ -4,7 +4,7 @@ class CreateSwimmers < ActiveRecord::Migration
       t.string :name
       t.integer :age
       t.string :day_swim
-      t.integer :level 
+      t.string :notes
     end
   end
 end
