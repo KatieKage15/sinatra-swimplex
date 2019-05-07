@@ -8,10 +8,6 @@ class InstructorsController < ApplicationController
     end
   end
 
-  # does not let a user sign up without a username
-  # does not let a user sign up without an email
-  # does not let a user sign up without a password
-  # redirects to failure page to try again
   post "/signup" do
     if params[:username] != "" && params[:password] != "" && params[:email] != ""
       @instructor = Instructor.new(username: params["username"], password: params["password"], email: params["email"])
@@ -22,9 +18,6 @@ class InstructorsController < ApplicationController
     end
   end
 
-  # loads the login page
-  # loads swimmers after login
-  # does not let user view login page if already logged in
   get "/login" do
     if !logged_in?
       erb :login
