@@ -1,0 +1,14 @@
+<form action="/swimmers/<%= @swimmer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <ul>
+    <li>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="swimmer[name]" value="<%= @swimmer.name %>" />
+    <br></br>
+      <label for="notes">Notes</label>
+      <textarea id="notes" type="text" name="swimmer[notes]"  value="<%= @swimmer.notes %>">
+      </textarea>
+    </li>
+  </ul>
+  <input type="submit"/>
+</form>

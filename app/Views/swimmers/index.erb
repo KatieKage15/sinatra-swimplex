@@ -1,0 +1,8 @@
+<h1>Welcome, <%=current_instructor.username%></h1>
+<h2>Here are your list of swimmers:</h2>
+
+  <%current_instructor.swimmers.each do |swimmer|%>
+    <div>
+        <%= swimmer.notes %>
+    </div>
+  <% end %>
