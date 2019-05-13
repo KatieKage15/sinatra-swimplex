@@ -44,7 +44,7 @@ class InstructorsController < ApplicationController
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect to '/intructor/login'
+      redirect to '/swimmers/logout'
     else
       redirect to '/'
     end

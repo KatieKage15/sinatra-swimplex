@@ -18,6 +18,23 @@ class SwimmersController < ApplicationController
     end
   end
 
+  post '/swimmers' do
+    if logged_in?
+      if params[:notes] == ""
+        redirect to "/swimmers/new"
+      else
+        @swimmer = Swimmer.build(notes: params[:notes])
+        if @swimmer.save
+          redirect to "/swimmers/#{@swimmer.id}"
+        else
+        redirect to "/swimmers/new"
+        end
+      end
+    else
+      redirect to "/login"
+    end
+  end
+
   #EDIT
   get "/swimmmers/:id/edit" do
     @swimmers = Swimmer.find(params[:id])
@@ -37,21 +54,7 @@ class SwimmersController < ApplicationController
     redirect to "/swimmers"
   end
 
-
-  # get "/swimmers" do
-  #   @instructor = Instructor.find(session[:instructor_id])
-  #   erb :swimmers
-  # end
-  #
-  # post "/swimmers" do
-  #   @swimmer = Swimmer.create(params[:swimmer])
-  #   if !params["name"]["age"]["day_swim"]["notes"].empty?
-  #     @swimmer.instructor = Instructor.create(name: params["name"]["age"]["day_swim"]["notes"])
-  #   end
-  #     @swimmer.save
-  #     redirect "/#{@swimmer.id}"
-  # end
-
+  #create
   #read
   #update
   #delete

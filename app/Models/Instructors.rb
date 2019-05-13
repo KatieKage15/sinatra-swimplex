@@ -3,8 +3,4 @@ class Instructor < ActiveRecord::Base #allows user to use any activerecord metho
   has_secure_password #bcrypt-authenticate
   validates :username, presence: true
   #^macro!    ^attribute
-  #code generating code
-  # def swimmers_sort_by_name
-  #   self.swimmers.all.sort_by {|swimmer| category[:name]}
-  # end
 end
