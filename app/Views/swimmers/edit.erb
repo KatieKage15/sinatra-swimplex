@@ -1,7 +1,21 @@
 <h2>Edit Your Swimmer:</h2>
 
-<form method="post" action="/swimmers/<%=@swimmer.id%>">
-  <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <input type="text" name="notes" value="<%= @swimmer.notes %>">
-  <input type="submit" value="Submit">
+<form action="/swimmers/<%= @swimmer.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <ul>
+    <li>
+      <label for="name">Name</label>
+      <input id="name" type="text" name="swimmer[name]" value="<%= @swimmer.name %>" />
+    </li>
+    <li>
+      <label for="age">Age</label>
+      <input id="age" type="integer" name="swimmer[age]" value="<%= @swimmer.age %>" />
+    </li>
+    <li>
+      <label for="notes">Notes</label>
+      <textarea id="notes" type="text" name="swimmer[notes]" value="<%= @article.notes %>">
+      </textarea>
+    </li>
+  </ul>
+  <input type="submit" />
 </form>

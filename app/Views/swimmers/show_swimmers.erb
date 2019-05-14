@@ -1,0 +1,13 @@
+<h1><%= @swimmer.name %></h1>
+<%= @swimmer.age %>
+<%= @swimmer.notes %>
+
+<form method="post" action="/swimmers/<%= @swimmer.id %>/delete">
+  <input type="hidden" name="_method" value="DELETE" />
+  <input type="submit" value="Delete Swimmer"/>
+</form>
+
+<form method="post" action="/swimmers/<%= @swimmer.id %>/edit">
+  <input type="hidden" name="_method" value="EDIT" />
+  <input type="submit" value="Edit Swimmer"/>
+</form>

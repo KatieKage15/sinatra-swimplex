@@ -9,7 +9,7 @@ class SwimmersController < ApplicationController
     end
   end
 
-  #CREATE
+  #new
   get '/swimmers/new' do
     if logged_in?
       erb :'swimmers/new'
@@ -18,12 +18,13 @@ class SwimmersController < ApplicationController
     end
   end
 
+  #create
   post '/swimmers' do
     if logged_in?
       if params[:notes] == ""
         redirect to "/swimmers/new"
       else
-        @swimmer = Swimmer.build(notes: params[:notes])
+        @swimmer = Swimmer.create(params)
         if @swimmer.save
           redirect to "/swimmers/#{@swimmer.id}"
         else
@@ -35,20 +36,26 @@ class SwimmersController < ApplicationController
     end
   end
 
-  #EDIT
+  #read
+  get "/swimmers/:id" do
+    @swimmer = Swimmer.find(params[:id])
+    erb :'/swimmers/show_swimmers'
+  end
+
+  #edit
   get "/swimmmers/:id/edit" do
     @swimmers = Swimmer.find(params[:id])
     erb :'/swimmers/edit'
   end
 
-  #UPDATE
+  #update
   patch "/swimmers/:id" do
     @swimmer = Swimmer.find(params[:id])
     @swimmer.update(params[:swimmer])
     redirect to "/swimmers/#{@swimmer.id}"
   end
 
-  #DELETE
+  #delete
   delete "/swimmers/:id" do
     Swimmer.destroy(params[:id])
     redirect to "/swimmers"

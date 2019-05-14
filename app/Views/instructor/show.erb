@@ -1,0 +1,8 @@
+<p> Here are your swimmers, <%= @instructor.username %>
+<% @instructor.swimmer.each do |swimmer| %>
+  <div>
+    <%= swimmer.name %>
+    <%= swimmer.age %>
+    <%= swimmer.notes %>
+  </div>
+<% end %>

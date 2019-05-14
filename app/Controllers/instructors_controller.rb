@@ -31,7 +31,7 @@ class InstructorsController < ApplicationController
     #binding.pry
     if @instructor && @instructor.authenticate(params[:password])
       session[:instructor_id] = @instructor.id
-      redirect to "/swimmers"
+      redirect to "/instructor/show"
     else
       redirect to '/failure'
     end
@@ -44,7 +44,7 @@ class InstructorsController < ApplicationController
   get '/logout' do
     if logged_in?
       session.destroy
-      redirect to '/swimmers/logout'
+      redirect to '/'
     else
       redirect to '/'
     end
