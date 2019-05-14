@@ -3,10 +3,11 @@
 
   <%current_instructor.swimmers.each do |swimmer|%>
     <div>
+      <h3>  <%= swimmer.name %> <%= swimmer.age %> </h3>
         <%= swimmer.notes %>
     </div>
   <% end %>
 
-<h3> Enter a new swimmer <a href="/swimmers/new">here!</a> </h3>
-
-<h3> Edit a current swimmer <a href="/swimmers/edit">here!</a> </h3>
+<br></br>
+<h4> Enter a new swimmer <a href="/swimmers/new">here!</a> </h4>
+<h4> Edit a current swimmer <a href="/swimmers/edit">here!</a> </h4>

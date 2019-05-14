@@ -1,8 +1,13 @@
-<p> Here are your swimmers, <%= @instructor.username %>
-<% @instructor.swimmer.each do |swimmer| %>
+<h1> Here are your swimmers, <%= @instructor.username %>!</h1>
+<% @instructor.swimmers.each do |swimmer| %>
   <div>
     <%= swimmer.name %>
     <%= swimmer.age %>
     <%= swimmer.notes %>
   </div>
 <% end %>
+
+<br></br>
+<h3> Enter a new swimmer <a href="/swimmers/new">here!</a> </h3>
+
+<h3> Edit a current swimmer <a href="/swimmers/edit">here!</a> </h3>

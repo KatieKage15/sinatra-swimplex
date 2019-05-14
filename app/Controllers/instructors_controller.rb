@@ -31,7 +31,7 @@ class InstructorsController < ApplicationController
     #binding.pry
     if @instructor && @instructor.authenticate(params[:password])
       session[:instructor_id] = @instructor.id
-      redirect to "/instructor/show"
+      erb :"/instructor/show"
     else
       redirect to '/failure'
     end

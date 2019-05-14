@@ -28,7 +28,7 @@ class SwimmersController < ApplicationController
         if @swimmer.save
           redirect to "/swimmers/#{@swimmer.id}"
         else
-        redirect to "/swimmers/new"
+        redirect to "/swimmers/show_swimmers"
         end
       end
     else
