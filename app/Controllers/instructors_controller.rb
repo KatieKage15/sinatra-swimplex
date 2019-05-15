@@ -37,6 +37,15 @@ class InstructorsController < ApplicationController
     end
   end
 
+  get '/instructor/:id' do
+    if logged_in?
+      @instructor = Instructor.find(params[:id])
+      erb :'/instructor/show'
+    else
+      redirect to '/login'
+    end
+  end
+  
   get "/failure" do
     erb :failure
   end

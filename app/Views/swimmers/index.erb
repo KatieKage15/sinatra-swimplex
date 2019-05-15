@@ -3,7 +3,8 @@
 
   <%current_instructor.swimmers.each do |swimmer|%>
     <div>
-      <h3>  <%= swimmer.name %> <%= swimmer.age %> </h3>
+      <h3>  <%= swimmer.name %>
+          <%= swimmer.age %> </h3>
         <%= swimmer.notes %>
     </div>
   <% end %>

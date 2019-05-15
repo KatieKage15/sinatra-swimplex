@@ -1,11 +1,9 @@
-<h1> Here are your swimmers, <%= @instructor %>!</h1>
-<% @instructor.swimmers.each do |swimmer| %>
-  <div>
-    <%= swimmer.name %>
-    <%= swimmer.age %>
-    <%= swimmer.notes %>
-  </div>
-<% end %>
+
+    <%= @swimmer.name %>
+    <%= @swimmer.age %>
+    <%= @swimmer.notes %>
+     <%=@swimmer.instructor.username%>
+
 
 <form method="post" action="/swimmers/<%= @swimmer.id %>/delete">
   <input type="hidden" name="_method" value="DELETE" />

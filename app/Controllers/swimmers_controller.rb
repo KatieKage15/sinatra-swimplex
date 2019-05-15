@@ -25,7 +25,9 @@ class SwimmersController < ApplicationController
         redirect to "/swimmers/new"
       else
         @swimmer = Swimmer.create(params)
+        current_instructor.swimmers << @swimmer
         if @swimmer.save
+
           redirect to "/swimmers/#{@swimmer.id}"
         else
         redirect to "/swimmers/show_swimmers"
@@ -39,12 +41,13 @@ class SwimmersController < ApplicationController
   #read
   get "/swimmers/:id" do
     @swimmer = Swimmer.find(params[:id])
+    @swimmers= current_instructor.swimmers
     erb :'/swimmers/show_swimmers'
   end
 
   #edit
-  get "/swimmmers/:id/edit" do
-    @swimmers = Swimmer.find(params[:id])
+  get "/swimmers/:id/edit" do
+    @swimmer = Swimmer.find(params[:id])
     erb :'/swimmers/edit'
   end
 
@@ -56,7 +59,7 @@ class SwimmersController < ApplicationController
   end
 
   #delete
-  delete "/swimmers/:id" do
+  delete "/swimmers/:id/delete" do
     Swimmer.destroy(params[:id])
     redirect to "/swimmers"
   end
