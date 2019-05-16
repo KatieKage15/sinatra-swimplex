@@ -26,5 +26,9 @@ class ApplicationController < Sinatra::Base
      def current_instructor
        @current_instructor ||= Instructor.find_by(id: session[:instructor_id])
      end
+
+     def authorized_to_edit(swimmer)
+       @current_instructor.id == swimmer.id 
+     end
    end
 end

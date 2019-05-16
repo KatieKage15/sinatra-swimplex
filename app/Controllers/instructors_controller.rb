@@ -28,7 +28,6 @@ class InstructorsController < ApplicationController
 
   post "/login" do
     @instructor = Instructor.find_by(:username => params[:username])
-    #binding.pry
     if @instructor && @instructor.authenticate(params[:password])
       session[:instructor_id] = @instructor.id
       erb :"/instructor/show"
@@ -45,7 +44,7 @@ class InstructorsController < ApplicationController
       redirect to '/login'
     end
   end
-  
+
   get "/failure" do
     erb :failure
   end

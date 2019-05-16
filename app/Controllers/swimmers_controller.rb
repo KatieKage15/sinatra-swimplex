@@ -27,7 +27,6 @@ class SwimmersController < ApplicationController
         @swimmer = Swimmer.create(params)
         current_instructor.swimmers << @swimmer
         if @swimmer.save
-
           redirect to "/swimmers/#{@swimmer.id}"
         else
         redirect to "/swimmers/show_swimmers"
@@ -48,6 +47,7 @@ class SwimmersController < ApplicationController
   #edit
   get "/swimmers/:id/edit" do
     @swimmer = Swimmer.find(params[:id])
+    authorized_to_edit(@swimmer)
     erb :'/swimmers/edit'
   end
 
